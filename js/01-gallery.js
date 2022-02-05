@@ -25,3 +25,25 @@ function createGalleryMarkup(image) {
 }
 
 addGalleryMarkup(galleryItems);
+
+galleryRef.addEventListener('click', onImageClick);
+
+function onImageClick(event) {
+  event.preventDefault();
+
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
+
+  openModal(event);
+}
+
+function openModal(event) {
+  basicLightbox
+    .create(
+      `
+		<img src="${event.target.dataset.source}">
+	`
+    )
+    .show();
+}
